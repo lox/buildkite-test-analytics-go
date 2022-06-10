@@ -14,7 +14,7 @@ import (
 
 type CLI struct {
 	APIToken string `help:"The Buildkite Test Analytics Token" env:"BUILDKITE_ANALYTICS_TOKEN" required:""`
-	Debug    bool   `help:"Enable debugging output"`
+	Debug    bool   `help:"Enable debugging output" env:"DEBUG"`
 
 	Key         string `help:"The test run key" required:"" run_env:"key"`
 	BuildNumber string `help:"The test run build number" run_env:"number"`
@@ -58,6 +58,7 @@ func (c *CLI) Run(ctx context.Context) error {
 	_, err := testjson.ScanTestOutput(testjson.ScanConfig{
 		Stdout: os.Stdin,
 		Handler: &testEventHandler{
+			debug:  c.Debug,
 			client: client,
 		},
 	})
