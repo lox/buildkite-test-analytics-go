@@ -9,6 +9,7 @@ import (
 )
 
 type testEventHandler struct {
+	debug  bool
 	client *analytics.Client
 }
 
@@ -47,7 +48,9 @@ func (e *testEventHandler) Event(event testjson.TestEvent, execution *testjson.E
 			return err
 		}
 
-		log.Printf("Uploaded test run: %s", resp.RunURL)
+		if e.debug {
+			log.Printf("Uploaded test run: %s", resp.RunURL)
+		}
 	}
 
 	return nil
