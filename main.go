@@ -23,7 +23,7 @@ type CLI struct {
 	Branch      string `help:"The source control branch" run_env:"branch"`
 	CommitSha   string `help:"The source control commit sha" run_env:"commit_sha"`
 	Message     string `help:"The source control commit message" run_env:"message"`
-	BuildURL    string `help:"Th url for the build" runenv:"url"`
+	BuildURL    string `help:"Th url for the build" run_env:"url"`
 }
 
 func (c *CLI) Run(ctx context.Context) error {
